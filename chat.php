@@ -5,18 +5,24 @@
 	$currentCache->load();
 
 	$foundChatter = false;
+	$existingChatter = false;
 	$id = "";
 	foreach ( $currentCache->chat as $currentChatID => $chat )
 	{
-		if ( ( count( $chat->name_list ) == 1 ) && ( $chat->name_list[0] != $_GET["name"] ) )
+		if ( count( $chat->name_list ) == 1 )
 		{
-			$chat->name_list[1] = $_GET["name"];
-			$id = $currentChatID;
-			$foundChatter = true;
+			if ( $chat->name_list[0] != $_GET["name"] )
+			{
+				$chat->name_list[1] = $_GET["name"];
+				$id = $currentChatID;
+				$foundChatter = true;
+			}
+			else
+				$existingChatter = true;
 		}
 	}
 	
-	if ( !$foundChatter )
+	if ( ( !$foundChatter ) && ( !$existingChatter ) )
 	{
 		
 		$id = md5( rand(1, 1000000000) + "disruptsecret" );
@@ -44,12 +50,12 @@
 	<body>
 		<div id="page_wrapper">
 			<?php
-				if ( $currentCache->waiting_list == $_GET["name"] )
+				if ( $existingChatter )
 				{
 					echo "<div id=\"title_part\">An existing waiting window is already opened</div>";
 					die();
 				}
-				else if ( $currentCache->waiting_list == "" )
+				else if ( count( $currentCache->chat[$id]->name_list ) == 1 )
 				{
 					echo "<div id=\"title_part\">Waiting for another chatter to come</div>";
 					$currentCache->waiting_list = $_GET["name"];

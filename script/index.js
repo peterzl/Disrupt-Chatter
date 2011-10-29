@@ -10,7 +10,19 @@ $(document).ready(function()
 			 open_chat();
 		});
 		
-		
+	
+	$("input").focus( function()
+	{
+		if ( $("input").attr("value") == "Enter Your Name Here" )
+			$("input").attr("value", "");
+	});
+	
+	$("input").blur( function()
+	{
+		if ( $("input").attr("value") == "" )
+			$("input").attr("value", "Enter Your Name Here");
+	})
+	
 	$("input").bind("keydown", function(event) {
       var keycode = (event.keyCode ? event.keyCode : (event.which ? event.which : event.charCode));
       if (keycode == 13)

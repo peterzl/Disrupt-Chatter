@@ -16,13 +16,16 @@ $(document).ready(function()
 	   		{
 	   			var obj = $.parseJSON(data);
 	   			var html = "<div>Chatting with ";
-	   			for ( i = 0; i < obj.name_list.length - 1; i++ )
+	   			if ( obj.name_list.length > 1 )
 	   			{
-	   				html += obj.name_list[i] + ", ";
+		   			for ( i = 0; i < obj.name_list.length - 1; i++ )
+		   			{
+		   				html += obj.name_list[i] + ", ";
+		   			}
+		   			html += obj.name_list[obj.name_list.length - 1];
+		   			html += "</div>";
+		   			$( "#title_part" ).html( html );
 	   			}
-	   			html += obj.name_list[obj.name_list.length - 1];
-	   			html += "</div>";
-	   			$( "#title_part" ).html( html );
 	   			if ( obj.chat_pool )
 	   			{
 		   			for ( i = 0; i < obj.chat_pool.length; i++ )
@@ -47,9 +50,4 @@ $(document).ready(function()
    
    if ( chatID != "" )
 		setTimeout( function(){check_chat()}, 1000);
-	else
-	{
-		alert("1");
-		$("input").attr("disabled", "disabled" );
-	}
 });
