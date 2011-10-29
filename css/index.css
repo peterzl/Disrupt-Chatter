@@ -1,0 +1,34 @@
+html
+{
+	height: 100%;
+}
+
+body
+{
+	font-family:Arial, Helvetica, sans-serif;
+	height: 100%;
+	background-color: #666666;
+}
+
+#page_wrapper
+{
+	width: 500px;
+	margin-top: 100px;
+	margin-left: auto;
+	margin-right:auto;
+}
+
+#title_part
+{
+	color: #ffffff;
+	width:200px;
+	margin-left:auto;
+	margin-right:auto;
+	font-size: 23px;
+}
+
+#body_part
+{
+	
+	margin-top: 30px;
+}
