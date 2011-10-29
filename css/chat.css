@@ -16,6 +16,7 @@ body
 	margin-top: 100px;
 	margin-left: auto;
 	margin-right:auto;
+	overflow:auto;
 }
 
 #title_part
@@ -30,7 +31,7 @@ body
 #body_part
 {
 	margin-top: 30px;
-	height: 300px;
+	width: 400px;
 	border: 1px solid #f1f1f1;
 	color: #f1f1f1;
 }

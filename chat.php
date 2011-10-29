@@ -5,9 +5,10 @@
 	$currentCache->load();
 
 	$foundChatter = false;
+	$id = "";
 	foreach ( $currentCache->chat as $currentChatID => $chat )
 	{
-		if ( count( $chat->name_list ) == 1 )
+		if ( ( count( $chat->name_list ) == 1 ) && ( $chat->name_list[0] != $_GET["name"] ) )
 		{
 			$chat->name_list[1] = $_GET["name"];
 			$id = $currentChatID;
@@ -44,7 +45,10 @@
 		<div id="page_wrapper">
 			<?php
 				if ( $currentCache->waiting_list == $_GET["name"] )
+				{
 					echo "<div id=\"title_part\">An existing waiting window is already opened</div>";
+					die();
+				}
 				else if ( $currentCache->waiting_list == "" )
 				{
 					echo "<div id=\"title_part\">Waiting for another chatter to come</div>";

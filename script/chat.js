@@ -45,5 +45,11 @@ $(document).ready(function()
       }
    });
    
-	setTimeout( function(){check_chat()}, 1000);
+   if ( chatID != "" )
+		setTimeout( function(){check_chat()}, 1000);
+	else
+	{
+		alert("1");
+		$("input").attr("disabled", "disabled" );
+	}
 });
